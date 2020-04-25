@@ -25,7 +25,7 @@ class App extends React.Component {
           <Route path="/dashboard" component={Dashboard} />
   
           <Route path="/bookings/:id" component={BookingDetails} />
-          <Route path="/categories/:id" component={CategoryDetails} />
+          <Route path="/categories/:name" component={CategoryDetails} />
           <Route component = {Error} />
         </Switch>
         <BottomBar />

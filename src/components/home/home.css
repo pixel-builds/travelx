@@ -1,0 +1,15 @@
+.main{
+    width: 100%;
+    padding: 3.4%;
+}
+
+section.head{
+    width: 100%;
+    padding-top: 3%;
+    /* box-shadow: 0px 28px 39px -24px rgba(0,0,0,0.53) !important; */
+}
+
+section.info{
+    margin-top: 40px;
+    text-align: center;
+}
