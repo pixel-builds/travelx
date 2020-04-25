@@ -1,5 +1,6 @@
 import React from 'react';
-import './App.css';
+// import './App.css';
+
 import {Route, Switch} from 'react-router-dom';
 
 import Home from './components/home/home';
@@ -10,6 +11,7 @@ import BookingDetails from './components/booking-details/booking';
 import CategoryDetails from './components/category-details/category';
 
 import BottomBar from './components/nav/bottom-tab';
+require('./App.css');
 
 
 class App extends React.Component {

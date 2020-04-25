@@ -9,7 +9,7 @@ class BookingDetails extends React.Component {
     }
     render(){
         return (
-            <p>Booking Details</p>
+            <h1 className="heading">Booking Details</h1>
         );
     }
 }

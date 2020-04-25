@@ -1,3 +1,11 @@
-.App {
-    position: relative;
+/* GLOBAL STUFF */
+
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Lobster&display=swap');
+
+.heading{
+    font-family: 'Fjalla One', sans-serif;
+}
+
+.heading-2 {
+    font-family: 'Lobster', cursive;
 }
