@@ -1,10 +1,12 @@
 import React from 'react';
 import './home.css';
 
-function Home() {
-    return (
-        <p>HomeComponent</p>
-    );
+class Home extends React.Component {
+    render() {
+        return (
+            <p>HomeComponent</p>
+        );
+    }
 }
 
 export default Home;

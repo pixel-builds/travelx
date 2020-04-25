@@ -1,9 +1,12 @@
 import React from 'react'
 
-function Search() {
-    return (
-        <p>SearchCOmponent</p>
-    );
+class Search extends React.Component {
+    render() {
+        return (
+            <p>SearchCOmponent</p>
+        );
+    }
+
 }
 
 export default Search;

@@ -1,9 +1,11 @@
 import React from 'react';
 
-function Profile() {
-    return (
-        <p>Profile</p>
-    );
+class Profile extends React.Component {
+    render() {
+        return (
+            <p>Profile</p>
+        );
+    }
 }
 
 export default Profile;
