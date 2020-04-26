@@ -29,11 +29,9 @@ class CategoryDetails extends React.Component {
         fetch('http://localhost:4444/categories/' + params.name + '/bookings')
         .then(res => res.json())
         .then( (result) => {
-            console.log(result)
             this.setState({
                 bookings: result
             })
-            console.log(this.state)
         }, (error) => {
             console.log(error)
         })    
