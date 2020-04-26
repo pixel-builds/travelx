@@ -3,11 +3,12 @@ import './categories.css';
 import CategoryItem from './categoryItem';
 
 class Categories extends React.Component {
+
     constructor(props) {
         super(props);
-        this.state = { 
+        this.state = {
             categories: [''],
-            isLoading: true 
+            isLoading: true
         }
     }
 
@@ -16,11 +17,10 @@ class Categories extends React.Component {
             .then(res => res.json())
             .then(
                 (result) => {
-                    console.log(result);
-                    this.setState({ 
+                    this.setState({
                         categories: result,
                         isLoading: false
-                     })
+                    })
                 }
             )
     }
