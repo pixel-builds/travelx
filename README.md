@@ -1,5 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
+### This project also has a session storage inpmimentation
+1. Potentially good replacement for the redux store and it's helper methods.
 ## Available Scripts
 
 In the project directory, you can run:

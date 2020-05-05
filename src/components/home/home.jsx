@@ -18,10 +18,10 @@ class Home extends React.Component {
                         <Card.Body>
                             <Card.Title>Welcome !</Card.Title>
                             <Card.Text>
-                                Just answer the following set of questions which will help us plan your next trip!
+                                Help us to help you plan new trips !
                             </Card.Text>
-                            <Link to="search">
-                            <Button variant="success">Explore Places</Button>
+                            <Link to="register">
+                            <Button variant="success">Sign Up</Button>
                             </Link>
                         </Card.Body>
                     </Card>
