@@ -7,22 +7,35 @@ class Categories extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            categories: [''],
+            categories: [],
             isLoading: true
         }
     }
 
     componentDidMount() {
-        fetch('http://localhost:4444/categories')
+        const categories = this.getItem("categories");
+        if (!categories) {
+            fetch('http://localhost:4444/categories')
             .then(res => res.json())
-            .then(
-                (result) => {
-                    this.setState({
-                        categories: result,
-                        isLoading: false
-                    })
+            .then((result) => {
+                    this.dispatch("categories", result)
+                    this.componentDidMount();
                 }
             )
+        } else {
+            this.setState({
+                categories: categories,
+                isLoading: false
+            })
+        }
+    }
+
+    dispatch(key, data) {
+        return window.sessionStorage.setItem(key, JSON.stringify(data));
+    }
+
+    getItem(key) {
+        return JSON.parse(sessionStorage.getItem(key))
     }
 
     render() {

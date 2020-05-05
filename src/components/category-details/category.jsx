@@ -27,14 +27,14 @@ class CategoryDetails extends React.Component {
             })
 
         fetch('http://localhost:4444/categories/' + params.name + '/bookings')
-        .then(res => res.json())
-        .then( (result) => {
-            this.setState({
-                bookings: result
+            .then(res => res.json())
+            .then((result) => {
+                this.setState({
+                    bookings: result
+                })
+            }, (error) => {
+                console.log(error)
             })
-        }, (error) => {
-            console.log(error)
-        })    
     }
 
 
@@ -43,10 +43,10 @@ class CategoryDetails extends React.Component {
         return (
             <div className="main">
                 <span>{loading ? 'Loading.....' : ''}</span>
-                <h1 className="heading-2" style={{fontSize:3.1 + 'rem'}}>{this.state.category.name}</h1>
+                <h1 className="heading-2" style={{ fontSize: 3.1 + 'rem' }}>{this.state.category.name}</h1>
                 <p className="description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni nihil natus autem ea ipsum sed dicta eius. Eos officiis veniam placeat totam! Tempora placeat, neque tempore nihil ducimus quasi aspernatur!</p>
-                <img alt="img" className="img" src="https://images.pexels.com/photos/34950/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"/>
-                {this.state.bookings.map((item, k) => {return <h1 className="heading">{item.name}</h1>}) }
+                <img alt="img" className="img" src="https://images.pexels.com/photos/34950/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" />
+                {this.state.bookings.map((item, k) => { return <h1 className="heading">{item.name}</h1> })}
             </div>
         );
     }
