@@ -49,8 +49,7 @@ class Register extends React.Component {
         }
         axios.post('http://localhost:4444/auth/register', data)
         .then(res => {
-            console.log(res)
-            // TODO: link to login page
+            return
         }).catch( (e) => {
             console.log(e);
         })

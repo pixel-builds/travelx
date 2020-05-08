@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import jwt from 'jwt-decode';
-import { withRouter } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 import { Button } from 'react-bootstrap';
 
@@ -9,7 +9,8 @@ class Profile extends React.Component {
      constructor(props) {
         super(props);
         this.state = {
-            user: {}
+            user: {},
+            toHome: false
         }
         
         this.signOut = this.signOut.bind(this);
@@ -19,9 +20,8 @@ class Profile extends React.Component {
         const user = await JSON.parse(window.sessionStorage.getItem("user"));
         if (!user) {
             const token = await this.getItem("token");
-            if (!token) return window.open('http://localhost:3000', '_self')
+            if (!token) return this.setState({ toHome: true })
             const user = jwt(token);
-            console.log(user.id)
             await axios.get('http://localhost:4444/auth/users/'+user.id, {
                 headers: {'Authorization': 'Bearer '+ token}
             }).then( async (res) => {
@@ -34,7 +34,6 @@ class Profile extends React.Component {
             this.setState({
                 user: user
             });
-            console.log(this.state.user.name)
         }
     }
 
@@ -46,10 +45,15 @@ class Profile extends React.Component {
     async signOut() {
         await window.localStorage.removeItem("token");
         await window.sessionStorage.removeItem("user");
-        return window.open('http://localhost:3000', '_self');
+        return this.setState({ toHome: true })
     }
 
     render() {
+
+        if (this.state.toHome === true){
+            return <Redirect to="/" />
+        }
+
         return (
             <div>
                 <p>Hello, {this.state.user.name}</p>
@@ -59,4 +63,4 @@ class Profile extends React.Component {
     }
 }
 
-export default withRouter(Profile);
+export default Profile;

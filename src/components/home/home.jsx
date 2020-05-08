@@ -18,8 +18,7 @@ class Home extends React.Component {
         this.setState({
             token: token
         })
-        console.log(this.state.token)
-        if (!token) console.log("Not Logged In")
+        if (!token) return
     }
  
     async getItem(key) {

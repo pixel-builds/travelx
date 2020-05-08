@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 import './login.css';
 import { Form, Button } from 'react-bootstrap';
@@ -9,7 +10,8 @@ class Login extends React.Component {
         super(props);
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            toHome: false
         }
 
         this.submit = this.submit.bind(this);
@@ -25,8 +27,8 @@ class Login extends React.Component {
 
         await axios.post('http://localhost:4444/auth/login', data)
         .then( (res) => {
-            console.log(res.data);
             this.setItem("token", res.data.token);
+            return this.setState({ toHome: true })
         }).catch( (e) => {
             console.log(e)
         })
@@ -49,6 +51,11 @@ class Login extends React.Component {
     }    
 
     render() {
+
+        if (this.state.toHome === true) {
+            return <Redirect to='/profile' />
+        }
+
         return (
             <section>
                 <h1 className="heading">LogIn</h1>
