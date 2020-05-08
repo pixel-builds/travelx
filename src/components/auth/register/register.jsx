@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import './register.css';
 
+import { Link } from 'react-router-dom';
+
 import { Form, Button } from 'react-bootstrap';
 
 class Register extends React.Component {
@@ -77,6 +79,9 @@ class Register extends React.Component {
                         Submit
                     </Button>
                 </Form>
+                <p>
+                    <Link to={"/login"}>If already registered, Login</Link>
+                </p>
             </section>
         )
     }

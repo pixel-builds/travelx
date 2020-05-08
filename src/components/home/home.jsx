@@ -6,7 +6,29 @@ import { Link } from 'react-router-dom';
 import Categories from './categories';
 
 class Home extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            token: null
+        }
+    }
+
+    async componentDidMount() {
+        const token = await this.getItem("token")
+        this.setState({
+            token: token
+        })
+        console.log(this.state.token)
+        if (!token) console.log("Not Logged In")
+    }
+ 
+    async getItem(key) {
+        const item = await localStorage.getItem(key);
+        return JSON.parse(item);
+    }
+
     render() {
+        const token = this.state.token;
         return (
             <div className="main">
                 <section className="head">
@@ -20,9 +42,10 @@ class Home extends React.Component {
                             <Card.Text>
                                 Help us to help you plan new trips !
                             </Card.Text>
-                            <Link to="register">
-                            <Button variant="success">Sign Up</Button>
-                            </Link>
+                            {token
+                            ? <Link to="search"><Button variant="success">Search</Button></Link>
+                            : <Link to="register"><Button variant="success">Sign Up</Button> </Link>
+                            }
                         </Card.Body>
                     </Card>
                 </section>

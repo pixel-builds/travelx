@@ -25,10 +25,15 @@ class Login extends React.Component {
 
         await axios.post('http://localhost:4444/auth/login', data)
         .then( (res) => {
-            console.log(res.data.token)
+            console.log(res.data);
+            this.setItem("token", res.data.token);
         }).catch( (e) => {
             console.log(e)
         })
+    }
+
+    setItem(key, item) {
+        return window.localStorage.setItem(key, JSON.stringify(item))
     }
 
     emailChange(event) {

@@ -3,6 +3,10 @@ section {
     padding: 5%;
 }
 
+section > p {
+    margin-top: 30px;
+}
+
 Form{
     margin-top: 40px;
 }
