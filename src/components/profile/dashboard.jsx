@@ -18,7 +18,7 @@ class Dashboard extends React.Component {
         if (!token) return this.setState({ toLogin: true });
 
         await axios.get('http://localhost:4444/registry/user/'+user._id, {
-            headers: {'Authorization': 'Bearer '+ token}
+            headers: {'Authorization': 'Bearer '+ token} 
         })
         .then( (res) => {
             this.setState({
