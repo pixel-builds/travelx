@@ -2,8 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import './register.css';
 
-import { Link } from 'react-router-dom';
-
+import { Link, Redirect } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 
 class Register extends React.Component {
@@ -12,7 +11,8 @@ class Register extends React.Component {
         this.state = {
             email: '',
             name: '',
-            password: ''
+            password: '',
+            toLogin: false
         }
 
         this.emailChange = this.emailChange.bind(this);
@@ -49,13 +49,18 @@ class Register extends React.Component {
         }
         axios.post('http://localhost:4444/auth/register', data)
         .then(res => {
-            return
+            return this.setState({
+                toLogin: true
+            })
         }).catch( (e) => {
             console.log(e);
         })
     }
 
     render() {
+        if (this.state.toLogin === true) {
+            return <Redirect to="/login"/>
+        }
         return (
             <section>
                 <h1 className="heading"> Register </h1>

@@ -11,7 +11,7 @@ class Login extends React.Component {
         this.state = {
             email: '',
             password: '',
-            toHome: false
+            toProfile: false
         }
 
         this.submit = this.submit.bind(this);
@@ -28,7 +28,7 @@ class Login extends React.Component {
         await axios.post('http://localhost:4444/auth/login', data)
         .then( (res) => {
             this.setItem("token", res.data.token);
-            return this.setState({ toHome: true })
+            return this.setState({ toProfile: true })
         }).catch( (e) => {
             console.log(e)
         })
@@ -52,7 +52,7 @@ class Login extends React.Component {
 
     render() {
 
-        if (this.state.toHome === true) {
+        if (this.state.toProfile === true) {
             return <Redirect to='/profile' />
         }
 
