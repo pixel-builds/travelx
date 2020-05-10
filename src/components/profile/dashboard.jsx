@@ -17,19 +17,19 @@ class Dashboard extends React.Component {
         if (!user) return this.setState({ toLogin: true });
         if (!token) return this.setState({ toLogin: true });
 
-        await axios.get('http://localhost:4444/registry/user/'+user._id, {
-            headers: {'Authorization': 'Bearer '+ token} 
+        await axios.get('http://localhost:4444/registry/user/' + user._id, {
+            headers: { 'Authorization': 'Bearer ' + token }
         })
-        .then( (res) => {
-            this.setState({
-                bookings: res.data
+            .then((res) => {
+                this.setState({
+                    bookings: res.data
+                })
+            }).catch(e => {
+                console.log(e);
             })
-        }).catch(e => {
-            console.log(e);
-        })
     }
     render() {
-        if(this.state.toLogin === true) {
+        if (this.state.toLogin === true) {
             return <Redirect to="/login" />
         }
         return (
