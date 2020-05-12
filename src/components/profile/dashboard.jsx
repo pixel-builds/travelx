@@ -1,6 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import jwt from 'jwt-decode';
+
+import { Button } from 'react-bootstrap';
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -13,9 +16,19 @@ class Dashboard extends React.Component {
     }
     async componentDidMount() {
         const token = await JSON.parse(window.localStorage.getItem("token"));
-        const user = await JSON.parse(window.sessionStorage.getItem("user"));
-        if (!user) return this.setState({ toLogin: true });
+        let user = await JSON.parse(window.sessionStorage.getItem("user"));
         if (!token) return this.setState({ toLogin: true });
+        if (!user) {
+            const payload = await jwt(token);
+            await axios.get('http://localhost:4444/auth/users/' + payload.id, {
+                headers: { 'Authorization': 'Bearer ' + token }
+            }).then(async res => {
+                await window.sessionStorage.setItem("user", JSON.stringify(res.data));
+                user = res.data;
+            }).catch(e => {
+                console.log(e);
+            })
+        }
 
         await axios.get('http://localhost:4444/registry/user/' + user._id, {
             headers: { 'Authorization': 'Bearer ' + token }
@@ -33,7 +46,9 @@ class Dashboard extends React.Component {
             return <Redirect to="/login" />
         }
         return (
-            <p>DashBoard</p>
+            <div>
+                Dashboard
+            </div>
         );
     }
 }

@@ -13,21 +13,23 @@ class Categories extends React.Component {
     }
 
     componentDidMount() {
-        const categories = this.getItem("categories");
+        let categories = this.getItem("categories");
         if (!categories) {
             fetch('http://localhost:4444/categories')
-            .then(res => res.json())
-            .then((result) => {
-                    this.dispatch("categories", result)
-                    this.componentDidMount();
-                }
-            )
-        } else {
-            this.setState({
-                categories: categories,
-                isLoading: false
-            })
+                .then(res => res.json())
+                .then((result) => {
+                    this.dispatch("categories", result);
+                    categories = result;
+                    this.setState({
+                        categories: categories,
+                        isLoading: false
+                    })
+                });
         }
+        this.setState({
+            categories: categories,
+            isLoading: false
+        });
     }
 
     dispatch(key, data) {

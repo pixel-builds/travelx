@@ -55,6 +55,9 @@ class BookingDetails extends React.Component {
         if(this.state.toDashboard === true) {
             return <Redirect to={"/dashboard"} />
         }
+        if(this.state.toLogin === true) {
+            return <Redirect to={"/login"} />
+        }
         return (
             <div className="booking">
                 <h1 className="heading">{this.state.booking.name}</h1>

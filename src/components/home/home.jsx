@@ -2,6 +2,7 @@ import React from 'react';
 import './home.css';
 import { Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import jwt from 'jwt-decode';
 
 import Categories from './categories';
 
@@ -9,7 +10,8 @@ class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            token: null
+            token: null,
+            isAdmin: false
         }
     }
 
@@ -19,6 +21,8 @@ class Home extends React.Component {
             token: token
         })
         if (!token) return
+        const user = await jwt(token);
+        if (user.role === 'admin') return this.setState({ isAdmin: true });
     }
  
     async getItem(key) {
@@ -28,6 +32,7 @@ class Home extends React.Component {
 
     render() {
         const token = this.state.token;
+        let isAdmin = this.state.isAdmin;
         return (
             <div className="main">
                 <section className="head">
@@ -45,11 +50,16 @@ class Home extends React.Component {
                             ? <Link to="search"><Button variant="success">Search</Button></Link>
                             : <Link to="register"><Button variant="success">Sign Up</Button> </Link>
                             }
+                            {isAdmin
+                            ? <div style= {{paddingTop: 10+ 'px'}}><Link to="/admin"><Button variant="danger">Admin Panel</Button></Link></div>
+                            : null
+                            }
                         </Card.Body>
                     </Card>
                 </section>
 
                 <Categories />
+                <p><br/></p>
             </div>
         );
     }
