@@ -16,6 +16,11 @@ import Admin from './admin/admin';
 import BookingsAdmin from './admin/bookings/bookings';
 import RegistryAdmin from './admin/registry/registry';
 import CategoryAdmin from './admin/categories/categories';
+import VerifiedRegistries from './admin/registry/verifiedRegistries';
+import BookedRegistries from './admin/registry/bookedRegistries';
+import CreateBooking from './admin/bookings/createBooking';
+import CreateCategories from './admin/categories/createCategories'
+import RegistryDetails from './admin/registry/registryDetails';
 
 import BottomBar from './components/nav/bottom-tab';
 require('./App.css');
@@ -27,10 +32,15 @@ class App extends React.Component {
       <main>
         <Switch>
           <Route exact path="/admin" component = {Admin} />
-          <Route path="/admin/bookings" component = {BookingsAdmin} />
-          <Route path="/admin/category" component = {CategoryAdmin} />
-          <Route path="/admin/registry" component = {RegistryAdmin} />
-          
+          <Route path="/admin/bookings" exact component = {BookingsAdmin} />
+          <Route path="/admin/category" exact component = {CategoryAdmin} />
+          <Route path="/admin/registries" exact component = {RegistryAdmin} />
+          <Route path="/admin/registries/verified" component = {VerifiedRegistries} />
+          <Route path="/admin/registries/booked" component = {BookedRegistries} />
+          <Route path="/admin/category/create" component = {CreateCategories} />
+          <Route path="/admin/bookings/create" component = {CreateBooking} />
+          <Route path="/admin/registry/:id" component = {RegistryDetails} />
+
           <Route exact path="/" component={Home} />
           <Route path="/profile" component={Profile} />
           <Route path="/search" component={Search} />

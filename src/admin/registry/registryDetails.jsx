@@ -1,10 +1,10 @@
 import React from 'react'
 
-export default class CreateCategories extends React.Component {
+export default class RegistryDetails extends React.Component {
     render() {
         return (
             <div>
-                CreateCategories                
+                DETAILS
             </div>
         )
     }
