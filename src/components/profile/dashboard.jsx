@@ -24,9 +24,12 @@ class Dashboard extends React.Component {
             }).then(async res => {
                 await window.sessionStorage.setItem("user", JSON.stringify(res.data));
                 user = res.data;
+                this.setState({ user: user })
             }).catch(e => {
                 console.log(e);
             })
+        } else {
+            this.setState({ user: user })
         }
 
         await axios.get(URL+'registry/user/' + user._id, {
