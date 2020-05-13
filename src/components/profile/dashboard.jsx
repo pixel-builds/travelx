@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import jwt from 'jwt-decode';
 
-import { Button } from 'react-bootstrap';
 
 class Dashboard extends React.Component {
     constructor(props) {

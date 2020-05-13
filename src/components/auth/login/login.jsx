@@ -29,6 +29,7 @@ class Login extends React.Component {
         await axios.post('http://localhost:4444/auth/login', data)
         .then( (res) => {
             this.setItem("token", res.data.token);
+            window.sessionStorage.setItem("user", JSON.stringify(res.data.user))
             if (res.data.user.role === 'admin') return this.setState({ toAdmin: true })
             return this.setState({ toProfile: true })
         }).catch( (e) => {
