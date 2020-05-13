@@ -2,6 +2,8 @@ import React from 'react';
 import './booking.css';
 import axios from 'axios';
 
+import { URL } from '../../url';
+
 import { Redirect } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 
@@ -25,7 +27,7 @@ class BookingDetails extends React.Component {
         this.setState({ token: token })
         if (!token) return this.setState({ toLogin: true });
         const {match: {params} } = this.props;
-        await axios.get('http://localhost:4444/bookings/'+ params.id)
+        await axios.get(URL+'bookings/'+ params.id)
         .then( (res) => {
             this.setState({
                 booking: res.data
@@ -36,7 +38,7 @@ class BookingDetails extends React.Component {
     }
 
     async book() {
-        await axios.post('http://localhost:4444/registry', {
+        await axios.post(URL+'registry', {
             category: this.state.booking.category,
             bookingId: this.state.booking._id
         }, {

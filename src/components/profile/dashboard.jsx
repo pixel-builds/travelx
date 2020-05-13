@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import jwt from 'jwt-decode';
-
+import { URL } from '../../url';
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -19,7 +19,7 @@ class Dashboard extends React.Component {
         if (!token) return this.setState({ toLogin: true });
         if (!user) {
             const payload = await jwt(token);
-            await axios.get('http://localhost:4444/auth/users/' + payload.id, {
+            await axios.get(URL+'auth/users/' + payload.id, {
                 headers: { 'Authorization': 'Bearer ' + token }
             }).then(async res => {
                 await window.sessionStorage.setItem("user", JSON.stringify(res.data));
@@ -29,7 +29,7 @@ class Dashboard extends React.Component {
             })
         }
 
-        await axios.get('http://localhost:4444/registry/user/' + user._id, {
+        await axios.get(URL+'registry/user/' + user._id, {
             headers: { 'Authorization': 'Bearer ' + token }
         })
             .then((res) => {

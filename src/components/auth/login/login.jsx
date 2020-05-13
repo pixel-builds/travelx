@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
-
+import { URL } from '../../../url';
 import './login.css';
 import { Form, Button } from 'react-bootstrap';
 
@@ -26,7 +26,7 @@ class Login extends React.Component {
             password: this.state.password
         }
 
-        await axios.post('http://localhost:4444/auth/login', data)
+        await axios.post(URL + 'auth/login', data)
         .then( (res) => {
             this.setItem("token", res.data.token);
             window.sessionStorage.setItem("user", JSON.stringify(res.data.user))

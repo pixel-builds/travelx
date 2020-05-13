@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import './register.css';
 
+import { URL } from '../../../url';
+
 import { Link, Redirect } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 
@@ -47,7 +49,7 @@ class Register extends React.Component {
             name: this.state.name,
             password: this.state.password
         }
-        axios.post('http://localhost:4444/auth/register', data)
+        axios.post(URL+'auth/register', data)
         .then(res => {
             return this.setState({
                 toLogin: true

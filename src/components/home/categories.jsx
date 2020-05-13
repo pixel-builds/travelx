@@ -1,43 +1,40 @@
 import React from 'react';
 import './categories.css';
 import CategoryItem from './categoryItem';
+import axios from 'axios';
+import { URL } from '../../url';
 
 class Categories extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            categories: [],
+            categories: [''],
             isLoading: true
         }
     }
 
-    componentDidMount() {
-        let categories = this.getItem("categories");
+    async componentDidMount() {
+        const categories = await this.getItem("categories");
         if (!categories) {
-            fetch('http://localhost:4444/categories')
-                .then(res => res.json())
-                .then((result) => {
-                    this.dispatch("categories", result);
-                    categories = result;
-                    this.setState({
-                        categories: categories,
-                        isLoading: false
-                    })
-                });
+            await axios.get(URL+'categories')
+            .then(async res => {
+                await this.dispatch("categories", res.data)
+                this.componentDidMount()
+            }).catch(e => {
+                this.setState({ categories: categories })
+            })
+        } else {
+            this.setState({ categories: categories, isLoading: false});
         }
-        this.setState({
-            categories: categories,
-            isLoading: false
-        });
     }
 
-    dispatch(key, data) {
-        return window.sessionStorage.setItem(key, JSON.stringify(data));
+    async dispatch(key, data) {
+        return await window.sessionStorage.setItem(key, JSON.stringify(data));
     }
 
-    getItem(key) {
-        return JSON.parse(sessionStorage.getItem(key))
+    async getItem(key) {
+        return await JSON.parse(sessionStorage.getItem(key))
     }
 
     render() {

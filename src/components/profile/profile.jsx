@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import jwt from 'jwt-decode';
 import { Redirect } from 'react-router-dom';
-
+import {URL} from '../../url';
 import { Button } from 'react-bootstrap';
 
 class Profile extends React.Component {
@@ -22,7 +22,7 @@ class Profile extends React.Component {
             const token = await this.getItem("token");
             if (!token) return this.setState({ toHome: true })
             const user = jwt(token);
-            await axios.get('http://localhost:4444/auth/users/'+user.id, {
+            await axios.get(URL+'auth/users/'+user.id, {
                 headers: {'Authorization': 'Bearer '+ token}
             }).then( async (res) => {
                 await window.sessionStorage.setItem("user", JSON.stringify(res.data))

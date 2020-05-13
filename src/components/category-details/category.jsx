@@ -1,6 +1,6 @@
 import React from 'react';
 import './category.css';
-
+import {URL} from '../../url';
 import { Link } from 'react-router-dom';
 
 class CategoryDetails extends React.Component {
@@ -16,7 +16,7 @@ class CategoryDetails extends React.Component {
 
     componentDidMount() {
         const { match: { params } } = this.props;
-        fetch('http://localhost:4444/categories/' + params.name)
+        fetch(URL+'categories/' + params.name)
             .then(res => res.json())
             .then((result) => {
                 this.setState({
@@ -28,7 +28,7 @@ class CategoryDetails extends React.Component {
                 console.log(error)
             })
 
-        fetch('http://localhost:4444/categories/' + params.name + '/bookings')
+        fetch(URL+'categories/' + params.name + '/bookings')
             .then(res => res.json())
             .then((result) => {
                 this.setState({
