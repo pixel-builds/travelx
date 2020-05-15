@@ -46,10 +46,10 @@ class CategoryDetails extends React.Component {
             <div className="main">
                 <span>{loading ? 'Loading.....' : ''}</span>
                 <h1 className="heading-2" style={{ fontSize: 3.1 + 'rem' }}>{this.state.category.name}</h1>
-                <p className="description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni nihil natus autem ea ipsum sed dicta eius. Eos officiis veniam placeat totam! Tempora placeat, neque tempore nihil ducimus quasi aspernatur!</p>
+                <p className="description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni nihil natus autem ea ipsum sed dicta eius. Eos officiis veniam placeat totam! Tempora placeat, neque tempore nihil ducimus quasi aspernatur!</p><br/>
                 {this.state.bookings.map((item, k) => { 
                     return <Link to={"/bookings/"+ item._id}>
-                        <h1 className="heading">{item.name}</h1>
+                        <h1 className="heading booking-heading">{item.name}</h1>
                         <p>{item.description}</p>
                         <p><br/></p>
                     </Link>
