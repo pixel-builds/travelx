@@ -44,7 +44,7 @@ class Home extends React.Component {
                         <Card.Body>
                             <Card.Title>Welcome !</Card.Title>
                             <Card.Text>
-                                Help us to help you plan new trips !
+                                Help us to help you plan a new trip !
                             </Card.Text>
                             {token
                             ? <Link to="search"><Button variant="success">Search</Button></Link>

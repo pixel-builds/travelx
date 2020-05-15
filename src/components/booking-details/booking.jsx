@@ -24,8 +24,8 @@ class BookingDetails extends React.Component {
 
     async componentDidMount() {
         const token = await JSON.parse(window.localStorage.getItem("token"))
-        this.setState({ token: token })
         if (!token) return this.setState({ toLogin: true });
+        this.setState({ token: token })
         const {match: {params} } = this.props;
         await axios.get(URL+'bookings/'+ params.id)
         .then( (res) => {
@@ -50,6 +50,8 @@ class BookingDetails extends React.Component {
             console.log(e)
         })
     }
+
+    
     render(){
         if(this.state.toSearch === true) {
             return <Redirect to={"/search"} />
