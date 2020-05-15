@@ -6,7 +6,7 @@ export class PendingRegistries extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            bookings: []
+            registries: []
         }
     }
 
@@ -16,7 +16,7 @@ export class PendingRegistries extends React.Component {
             headers: {'Authorization': 'Bearer '+ token}
         }).then(res => {
             this.setState({
-                bookings: res.data
+                registries: res.data
             })
         })
     }
