@@ -22,7 +22,7 @@ class Categories extends React.Component {
                 await this.dispatch("categories", res.data)
                 this.componentDidMount()
             }).catch(e => {
-                this.setState({ categories: categories })
+                this.setState({ categories: categories, isLoading: false })
             })
         } else {
             this.setState({ categories: categories, isLoading: false});
