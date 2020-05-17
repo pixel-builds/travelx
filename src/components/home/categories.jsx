@@ -15,26 +15,13 @@ class Categories extends React.Component {
     }
 
     async componentDidMount() {
-        const categories = await this.getItem("categories");
-        if (!categories) {
             await axios.get(URL+'categories')
             .then(async res => {
-                await this.dispatch("categories", res.data)
-                this.componentDidMount()
-            }).catch(e => {
+                const categories = res.data;
                 this.setState({ categories: categories, isLoading: false })
+            }).catch(e => {
+                console.log(e);
             })
-        } else {
-            this.setState({ categories: categories, isLoading: false});
-        }
-    }
-
-    async dispatch(key, data) {
-        return await window.sessionStorage.setItem(key, JSON.stringify(data));
-    }
-
-    async getItem(key) {
-        return await JSON.parse(sessionStorage.getItem(key))
     }
 
     render() {

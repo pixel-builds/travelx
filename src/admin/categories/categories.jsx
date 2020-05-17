@@ -1,27 +1,20 @@
 import React from 'react';
-import axios from 'axios';
-import { URL } from '../../url';
+import Categories from '../../components/home/categories';
+import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 class CategoryAdmin extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            categories: []
-        }
-    }
 
-    async componentDidMount() {
-        const categories = await JSON.parse(window.sessionStorage.getItem("categories"));
-        if (!categories) {
-            await axios.get(URL+'categories').then(res => {
-                this.setState({categories: res.data});
-            })
-        } else {
-            this.setState({ categories: categories });
-        }
-    }
     render() {
-        return <div>CAT</div>;
+        return (
+        <div className="admin-cat" style={{ textAlign: 'center' }}>
+            <Categories />
+            <Link to="category/create">
+                <br/>
+            <Button variant="success">Create</Button>
+            </Link>
+        </div>
+        );
     }
 }
 
