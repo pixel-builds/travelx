@@ -29,7 +29,7 @@ class Categories extends React.Component {
         return (
             <div className="container">
                 <span>{loading ? 'Loading.....' : ''}</span>
-                {this.state.categories.map((item, k) => { return <CategoryItem key={k} category={item} /> })}
+                {this.state.categories.map((item, k) => { return (<CategoryItem key={k} category={item} />); })}
             </div>
         );
     }

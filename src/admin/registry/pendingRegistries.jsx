@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import { URL } from '../../url';
+import { Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 export class PendingRegistries extends React.Component {
     constructor(props) {
@@ -12,8 +14,8 @@ export class PendingRegistries extends React.Component {
 
     async componentDidMount() {
         const token = await JSON.parse(window.localStorage.getItem("token"));
-        await axios.get(URL+'registry/pending', {
-            headers: {'Authorization': 'Bearer '+ token}
+        await axios.get(URL + 'registry/pending', {
+            headers: { 'Authorization': 'Bearer ' + token }
         }).then(res => {
             this.setState({
                 registries: res.data
@@ -23,8 +25,25 @@ export class PendingRegistries extends React.Component {
 
     render() {
         return (
-            <div>
-                PENDING
+            <div style={{ padding: 3+'%', display: 'block' }}>
+                <h1 className="heading"> Pending Registries </h1>
+                {
+                    this.state.registries.map((item, key) => {
+                        return (
+                            <Card key={key} style={{ marginTop: 6+'%' }}>
+                            <Card.Body>
+                                <Card.Title>{item._id}</Card.Title>
+                                <Card.Title>Category: {item.category}</Card.Title>
+                                <div>
+                                    <Link to={"/admin/registry/"+item._id}>Details</Link>
+                                    <Link style={{ marginLeft:20+'px' }} to="/">User</Link>
+                                </div>
+                            </Card.Body>
+                        </Card>
+                        );
+                    })
+                }
+                <p><br/></p>
             </div>
         )
     }

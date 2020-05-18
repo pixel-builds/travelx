@@ -25,7 +25,7 @@ class bookedRegistries extends React.Component {
             <div>
                 BOOKED REGIStries           
             </div>
-        )
+        );
     }
 }
 
