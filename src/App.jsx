@@ -6,6 +6,7 @@ import Home from './components/home/home';
 import Profile from './components/profile/profile';
 import Search from './components/search/search';
 import Dashboard from './components/profile/dashboard';
+import UserRegistryDetails from './components/profile/registryDetails';
 import BookingDetails from './components/booking-details/booking';
 import CategoryDetails from './components/category-details/category';
 import Register from './components/auth/register/register';
@@ -45,7 +46,8 @@ class App extends React.Component {
           <Route exact path="/" component={Home} />
           <Route path="/profile" component={Profile} />
           <Route path="/search" component={Search} />
-          <Route path="/dashboard" component={Dashboard} />
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Route path="/dashboard/:id" component={UserRegistryDetails}/>
 
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />

@@ -10,7 +10,7 @@ class Dashboard extends React.Component {
         this.state = {
             user: {},
             toLogin: false,
-            bookings: []
+            registries: []
         }
     }
     async componentDidMount() {
@@ -37,7 +37,7 @@ class Dashboard extends React.Component {
         })
             .then((res) => {
                 this.setState({
-                    bookings: res.data
+                    registries: res.data
                 })
             }).catch(e => {
                 console.log(e);
