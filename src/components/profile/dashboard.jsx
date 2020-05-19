@@ -1,8 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import jwt from 'jwt-decode';
 import { URL } from '../../url';
+import { Card } from 'react-bootstrap';
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -48,9 +49,26 @@ class Dashboard extends React.Component {
             return <Redirect to="/login" />
         }
         return (
-            <div>
-                Dashboard
-            </div>
+            <div style={{ padding: 3+'%', display: 'block' }}>
+            <h1 className="heading">Your Bookings</h1>
+            {
+                this.state.registries.map((item, key) => {
+                    return (
+                        <Card key={key} style={{ marginTop: 6+'%' }}>
+                        <Card.Body>
+                            <Card.Title>{item._id}</Card.Title>
+                            <Card.Title>Category: {item.category}</Card.Title>
+                            <div>
+                                <Link to={"/dashboard/"+item._id}>Details</Link>
+                                <Link style={{ marginLeft:20+'px' }} to="/">User</Link>
+                            </div>
+                        </Card.Body>
+                    </Card>
+                    );
+                })
+            }
+            <p><br/></p>
+        </div>
         );
     }
 }

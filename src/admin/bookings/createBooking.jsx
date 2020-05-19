@@ -20,7 +20,6 @@ function TheForm() {
         await axios.post(URL+'bookings', data, {
             headers: {'Authorization': 'Bearer '+token}
         }).then(res => {
-            console.log(res.data);
             const bform = document.getElementById("booking");
             bform.reset();
         }).catch(e => {
