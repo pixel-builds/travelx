@@ -46,7 +46,7 @@ class CategoryDetails extends React.Component {
             <div className="main">
                 <span>{loading ? 'Loading.....' : ''}</span>
                 <h1 className="heading-2" style={{ fontSize: 3.1 + 'rem' }}>{this.state.category.name}</h1>
-                <p className="description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni nihil natus autem ea ipsum sed dicta eius. Eos officiis veniam placeat totam! Tempora placeat, neque tempore nihil ducimus quasi aspernatur!</p><br/>
+                <p className="description">Hare are the listings of the bookings for {this.state.category.name}. You can select the place you want and then book for it, and track the booking details in the dashboard</p><br/>
                 {this.state.bookings.map((item, k) => { 
                     return <Link to={"/bookings/"+ item._id}>
                         <h1 className="heading booking-heading">{item.name}</h1>
